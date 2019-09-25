@@ -21,10 +21,10 @@ const float Above_QueryValue = 4.50;
 const float Avg_QueryValue = 5.00;
 
 struct Student {
-	string Name;
-	string FacNo;
-	int Year;
-	float AvgGrade;
+	string Name = "Not Entered Yet";
+	string FacNo = "Not Entered Yet";
+	int Year = -1;
+	float AvgGrade= -1.0;
 };
 
 Student Students[MaxStudents + 1]; //Can remove +1 to set the value to 50
@@ -98,7 +98,7 @@ void PrintStudent(Student student) {
 	cout << "Name: " << student.Name << ", "
 		<< "FacNo: " << student.FacNo << ", "
 		<< "Year: " << student.Year << ", "
-		<< "Average Grade: " << student.AvgGrade << setw(3) << setfill('0') << ";"
+		<< "Average Grade: " << setw(4) << setfill('0') << student.AvgGrade<< ";"
 		<< endl;
 } //End of PrintStudent()
 
@@ -157,10 +157,10 @@ void PrintAvgAbove(Student students[], int arr_size,float cutoff_grade) {
 	}
 
 	if (student_count == 0)
-		cout << "\nThere are no students with Average Grade above " << cutoff_grade <<".";
+		cout << "\nThere are no students with Average Grade above " << left << setw(4) << setfill('0') << cutoff_grade <<".";
 	else {
 		avg_grade = avg_sum / student_count;
-		cout << "\nAverage Grade for all students with a personal Average Grade above " << cutoff_grade<<": "<<avg_grade<<setw(3) << "\n";
+		cout << "\nAverage Grade for all students with a personal Average Grade above " << cutoff_grade<<": "<< left<< setw(4) <<setfill('0')<<setprecision(3)<< avg_grade<<"\n";
 	}
 }
 
@@ -169,7 +169,7 @@ int main()
 	EnterAllStudents(Students, MaxStudents);
 	cout << "All students:\n";
 	PrintStudentsArray(Students, MaxStudents);
-	cout << "\nStudents with Average Grade above "<<Above_QueryValue<< setw(3) << setfill('0') << ":\n";
+	cout << "\nStudents with Average Grade above " << left<<setw(4) << setfill('0') << Above_QueryValue << ":\n";
 	PrintAbove(Students, MaxStudents);
 	cout << "\nStudents with Highest and Lowest Average Grades.\n";
 	PrintMinMax(Students, MaxStudents);
