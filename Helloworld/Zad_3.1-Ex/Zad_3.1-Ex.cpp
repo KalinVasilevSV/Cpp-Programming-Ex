@@ -53,21 +53,28 @@ string GenerateName() {
 	return ChooseRealName() + " " + ChooseRealSurname();
 } //End of GenerateName()
 
-string GenerateFacNo() {
+string GenerateFacNo(int student_order) {
 	string fac_prototype="";
 	int fac_digit;
 
-	for (int i = 0; i < FacNo_length; i++) {
-		fac_digit = rand() % 10;
-		fac_prototype += to_string(fac_digit);
-	}
+	bool UniqueFacNo = true;
+
+	do {
+		for (int i = 0; i < FacNo_length; i++) {
+			fac_digit = rand() % 10;
+			fac_prototype += to_string(fac_digit);
+		}
+		for (int i = 0; i < student_order; i++) {
+			if (Students[i].FacNo == fac_prototype)
+				UniqueFacNo = false;
+		}
+	} while (UniqueFacNo = false);
 
 	return fac_prototype;
 } //End of GenerateFacNo()
 
 int GenerateYear() {
-	int year_prototype = 1990 + rand() % 30;
-	return year_prototype;
+	return 1990 + rand() % 30;
 } //End of GenerateYear()
 
 float GenerateAvgGrade() {
@@ -77,10 +84,10 @@ float GenerateAvgGrade() {
 	return int_part + dec_part;
 } //End of GenerateAvgGrade()
 
-Student GenerateStudent() {
+Student GenerateStudent(int student_order) {
 	Student student_prototype;
 	student_prototype.Name = GenerateName();
-	student_prototype.FacNo = GenerateFacNo();
+	student_prototype.FacNo = GenerateFacNo(student_order);
 	student_prototype.Year = GenerateYear();
 	student_prototype.AvgGrade = GenerateAvgGrade();
 
@@ -90,15 +97,15 @@ Student GenerateStudent() {
 
 void EnterAllStudents(Student StudentsArr[], const int arr_size){
 	for (int i = 0; i < arr_size; i++) {
-		StudentsArr[i] = GenerateStudent();
+		StudentsArr[i] = GenerateStudent(i);
 	}
 } //End of EnterAllStudents()
 
 void PrintStudent(Student student) {
-	cout << "Name: " << student.Name << ", "
-		<< "FacNo: " << student.FacNo << ", "
-		<< "Year: " << student.Year << ", "
-		<< "Average Grade: " << setw(4) << setfill('0') << student.AvgGrade<< ";"
+	cout << "Name: " << left << setw(18) << setfill(' ') << student.Name << "| "
+		<< "FacNo: " << student.FacNo << " | "
+		<< "Year: " << student.Year << " | "
+		<< "Average Grade: " << setw(4) << setfill('0') << student.AvgGrade<< " |"
 		<< endl;
 } //End of PrintStudent()
 
