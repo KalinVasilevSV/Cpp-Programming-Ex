@@ -9,38 +9,37 @@
 #include <iostream>
 #include <cmath>
 #include <stdlib.h> // rand, srand
-#include <time.h> // time
 #include <climits> //minmax values
 
 using namespace std;
 
-const int size_prim = 6;
-const int size_sec = 9;
-const int divisor = 5;
+const int SIZE_PRIMARY = 6;
+const int SIZE_SECONDARY = 9;
+const int DIVISOR = 5;
 
 //Has to be defined before use
-struct arr_data {
+struct ArrData {
 	int div_count = 0;
 	float div_sum = 0;
 	int max_el = INT_MIN;
 };
 
-void populate_int_array(int arr[], int size) {
+void PopulateIntArray(int arr[], int size) {
 	for (int i = 0; i < size; i++) {
 		arr[i] = rand() % 151 - 100;
 	}
 } //End of populate_int_array()
 
-void print_arr(int arr[]) {
-	for (int i = 0; i < size_sec; i++) {
+void PrintArr(int arr[]) {
+	for (int i = 0; i < SIZE_SECONDARY; i++) {
 		cout << arr[i] << " ";
 	}
 } //End of print_arr()
 
-arr_data get_arr_data(int arr[]) {
-	arr_data div_result;
+ArrData GetArrData(int arr[]) {
+	ArrData div_result;
 
-	for (int i = 0; i < size_sec; i++) {
+	for (int i = 0; i < SIZE_SECONDARY; i++) {
 		if (arr[i] > div_result.max_el)
 			div_result.max_el = arr[i];
 
@@ -55,18 +54,18 @@ arr_data get_arr_data(int arr[]) {
 
 int main()
 {
-	int arr[size_prim][size_sec];
+	int arr[SIZE_PRIMARY][SIZE_SECONDARY];
 	int minmax_el_arrays = INT_MAX;
 
-	for (int i = 0; i < size_prim; i++) {
+	for (int i = 0; i < SIZE_PRIMARY; i++) {
 		//Populate each array
-		populate_int_array(arr[i], size_sec);
+		PopulateIntArray(arr[i], SIZE_SECONDARY);
 
 		//Print the populated array
-		print_arr(arr[i]);
+		PrintArr(arr[i]);
 
 		//Collect individual array data
-		arr_data data = get_arr_data(arr[i]);
+		ArrData data = GetArrData(arr[i]);
 
 		//Find average of elements divisible by divisor
 		float avg_div;
@@ -79,9 +78,9 @@ int main()
 		//Print results
 		cout << "\n";
 		if (data.div_count > 0)
-			cout << "Average of elements divided by" << divisor << ": " << avg_div << endl;
+			cout << "Average of elements divided by" << DIVISOR << ": " << avg_div << endl;
 		else
-			cout << "There are no elements divisible by " << divisor << endl;
+			cout << "There are no elements divisible by " << DIVISOR << endl;
 
 		cout << "Max element in the current array: " << data.max_el << endl;
 	}
