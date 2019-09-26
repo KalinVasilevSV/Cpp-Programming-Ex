@@ -8,7 +8,7 @@
 */
 
 #include <iostream>
-#include <stdlib.h> //rand(), srand()
+#include <stdlib.h> // rand(), srand()
 #include <iomanip>  // provides formatting for cout
 #include <string>
 
@@ -56,7 +56,7 @@ void GenerateCowPopulation(Cow cows[], int pop_size) {
 
 		cows[i] = New_Cow;
 	}
-}
+} //End of GenerateCowPopulation()
 
 // Print all cows
 void PrintAllCows(Cow cows[], int pop_size) {
@@ -67,7 +67,7 @@ void PrintAllCows(Cow cows[], int pop_size) {
 			<< "Calves -> " << cows[i].Calves << " | "
 			<< "Average Milk Production -> " << right << setw(5) << setfill(' ') << setprecision(4) << cows[i].Avg_Milk_Production << " |" << endl;
 	}
-}
+} //End of PrintAllCows()
 
 // Print cows with above specified Average Milk Production
 void PrintCowsAboveAvgMilk(Cow cows[], int pop_size, float query_avg) {
@@ -80,7 +80,7 @@ void PrintCowsAboveAvgMilk(Cow cows[], int pop_size, float query_avg) {
 				<< "Average Milk Production -> " << right << setw(5) << setfill(' ') << setprecision(4) << cows[i].Avg_Milk_Production << " |" << endl;
 		}
 	}
-}
+} //End of PrintCowsAboveAvgMilk()
 
 // Print cows with  Max and Min Milk Production for queried year
 void PrintMinMaxCows(Cow cows[], int pop_size, int query_year) {
@@ -114,7 +114,7 @@ void PrintMinMaxCows(Cow cows[], int pop_size, int query_year) {
 			<< "Calves -> " << MaxCow.Calves << " | "
 			<< "Average Milk Production -> " << right << setw(5) << setfill(' ') << setprecision(4) << MaxCow.Avg_Milk_Production << " |" << endl;
 	}
-}
+} //End of PrintMinMaxCows()
 
 // Print the Average Milk Production above specified average
 void PrintAvgMilkAbove(Cow cows[], int pop_size, float query_avg_above) {
@@ -134,7 +134,7 @@ void PrintAvgMilkAbove(Cow cows[], int pop_size, float query_avg_above) {
 	else {
 		cout << "\nThere are no cows that have and Average Milk Production above " << setprecision(4) << query_avg_above << "." << endl;
 	}
-}
+} //End of PrintAvgMilkAbove()
 
 
 int main() {
@@ -156,14 +156,3 @@ int main() {
 	PrintAvgMilkAbove(Cows, MAX_COWS, QUERY_AVERAGE_ABOVE);
 
 } //End of main()
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

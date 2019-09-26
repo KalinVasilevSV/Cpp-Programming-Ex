@@ -17,82 +17,71 @@ const int SIZE_PRIMARY = 6;
 const int SIZE_SECONDARY = 9;
 const int DIVISOR = 5;
 
-//Has to be defined before use
 struct ArrData {
-	int div_count = 0;
-	float div_sum = 0;
-	int max_el = INT_MIN;
+	int DivCount = 0;
+	float DivSum = 0;
+	int MaxElement = INT_MIN;
 };
 
 void PopulateIntArray(int arr[], int size) {
 	for (int i = 0; i < size; i++) {
 		arr[i] = rand() % 151 - 100;
 	}
-} //End of populate_int_array()
+} //End of PopulateIntArray()
 
 void PrintArr(int arr[]) {
 	for (int i = 0; i < SIZE_SECONDARY; i++) {
 		cout << arr[i] << " ";
 	}
-} //End of print_arr()
+} //End of PrintArr()
 
 ArrData GetArrData(int arr[]) {
 	ArrData div_result;
 
 	for (int i = 0; i < SIZE_SECONDARY; i++) {
-		if (arr[i] > div_result.max_el)
-			div_result.max_el = arr[i];
+		if (arr[i] > div_result.MaxElement)
+			div_result.MaxElement = arr[i];
 
 		if (arr[i] % 5 == 0) {
-			div_result.div_count++;
-			div_result.div_sum += arr[i];
+			div_result.DivCount++;
+			div_result.DivSum += arr[i];
 		}
 	}
 
 	return div_result;
-} //End of get_arr_data()
+} //End of GetArrData()
 
 int main()
 {
-	int arr[SIZE_PRIMARY][SIZE_SECONDARY];
+	int Arr[SIZE_PRIMARY][SIZE_SECONDARY];
 	int minmax_el_arrays = INT_MAX;
 
 	for (int i = 0; i < SIZE_PRIMARY; i++) {
 		//Populate each array
-		PopulateIntArray(arr[i], SIZE_SECONDARY);
+		PopulateIntArray(Arr[i], SIZE_SECONDARY);
 
 		//Print the populated array
-		PrintArr(arr[i]);
+		if (i > 0) cout << "\n";
+		PrintArr(Arr[i]);
 
 		//Collect individual array data
-		ArrData data = GetArrData(arr[i]);
+		ArrData Data = GetArrData(Arr[i]);
 
 		//Find average of elements divisible by divisor
 		float avg_div;
-		if(data.div_count>0)
-			avg_div = data.div_sum / data.div_count;
+		if(Data.DivCount>0)
+			avg_div = Data.DivSum / Data.DivCount;
 
 		//Find min of all max elements
-		if (data.max_el < minmax_el_arrays) minmax_el_arrays = data.max_el;
+		if (Data.MaxElement < minmax_el_arrays) minmax_el_arrays = Data.MaxElement;
 
 		//Print results
 		cout << "\n";
-		if (data.div_count > 0)
-			cout << "Average of elements divided by" << DIVISOR << ": " << avg_div << endl;
+		if (Data.DivCount > 0)
+			cout << "Average of elements divisible by " << DIVISOR << ": " << avg_div << endl;
 		else
 			cout << "There are no elements divisible by " << DIVISOR << endl;
 
-		cout << "Max element in the current array: " << data.max_el << endl;
+		cout << "Max element in the current array: " << Data.MaxElement << endl;
 	}
 } //End of main()
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
