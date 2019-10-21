@@ -1,6 +1,4 @@
-﻿// Zad_2.2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-/*
+﻿/*
 2.2) Генерирайте 6 масива с 9 елемента, които са случайни цели числа в интервала [-100, +50). Отпечатайте масивите!
 За всеки масив изведете средно-аритметично на числата, които се делят на 5 без остатък. За всеки масив изведете максималната стойност. 
 Изведете минималната стойност от максималните стойности по масиви. Отпечатайте сортираните масиви (в обратен ред, намаляващо)!
@@ -13,17 +11,21 @@
 
 using namespace std;
 
+//Constants
 const int SIZE_PRIMARY = 6;
 const int SIZE_SECONDARY = 9;
 const int DIVISOR = 5;
 
+//Types
 struct ArrData {
 	int DivCount = 0;
 	float DivSum = 0;
 	int MaxElement = INT_MIN;
 };
 
-void PopulateIntArray(int arr[], int size) {
+
+//Functions
+void PopulateIntArray(int arr[], const int size) {
 	for (int i = 0; i < size; i++) {
 		arr[i] = rand() % 151 - 100;
 	}
@@ -51,6 +53,7 @@ ArrData GetArrData(int arr[]) {
 	return div_result;
 } //End of GetArrData()
 
+//Entry point
 int main()
 {
 	int Arr[SIZE_PRIMARY][SIZE_SECONDARY];

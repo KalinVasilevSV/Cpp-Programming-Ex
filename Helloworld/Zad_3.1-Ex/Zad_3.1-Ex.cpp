@@ -14,7 +14,7 @@
 
 using namespace std;
 
-const int MaxStudents = 50; //Ще работим с 50 студента без въвеждане
+const int MaxStudents(50); //It's possible to use "=" operator as well as "()" operator to initialize variables
 const int FacNo_length = 9; // Watch for int overflow
 const int MinMaxQueryYear = 2018;
 const float Above_QueryValue = 4.50;
@@ -29,24 +29,24 @@ struct Student {
 
 Student Students[MaxStudents + 1]; //Can remove +1 to set the value to 50
 
-string RealName[]= { //There are 20 names in this array
+string RealNames[]= { //There are 20 names in this array
 	"Petar", "Ivan", "Kiril", "Slavina", "Liliq", "Stamen", "Georgi", "Stefan", 
 	"Andrei", "Katya", "Iordan", "Stoqn", "Zornica", "Monica",
 	"Nadya", "Kamen", "Svetoslav", "Antoniya", "Kameliya", "Radost"};
 
-string RealSurname[]={ //There are 15 surnames in this array
+string RealSurnames[]={ //There are 15 surnames in this array
 	"Ivanov", "Petrov", "Kolev", "Vasilev", "Jordanov", "Stefanov", "Georgiev", "Kacarski", 
 	"Todorov", "Milenkov", "Vajarski", "Stoikov", "Toshev", "Kostov", "Kovachki"
 };
 
 string ChooseRealName() {
 	int name_selector = rand() % 20;
-	return RealName[name_selector];
+	return RealNames[name_selector];
 } //End of ChooseRealName()
 
 string ChooseRealSurname() {
 	int surname_selector = rand() % 15;
-	return RealSurname[surname_selector];
+	return RealSurnames[surname_selector];
 } //End of ChooseRealSurname()
 
 string GenerateName() {
@@ -68,7 +68,7 @@ string GenerateFacNo(int student_order) {
 			if (Students[i].FacNo == fac_prototype)
 				UniqueFacNo = false;
 		}
-	} while (UniqueFacNo = false);
+	} while (UniqueFacNo == false);
 
 	return fac_prototype;
 } //End of GenerateFacNo()

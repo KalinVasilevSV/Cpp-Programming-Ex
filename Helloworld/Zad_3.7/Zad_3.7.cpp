@@ -1,6 +1,4 @@
-﻿// Zad_3.7.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-/*
+﻿/*
 3.7) В една земеделска ферма се прави малка програма за работа с кравите.
 Всяка крава се описва с номер, година на раждане, брой родени телета и (среден) млеконадой (реално число).
 Изведете информация за: всички крави; кравите, които имат млеконадой над 15; кравите  с максимален и минимален млеконадой,
@@ -25,6 +23,7 @@ const int QUERY_YEAR = 2017;
 const float QUERY_AVERAGE = 15.0;
 const float QUERY_AVERAGE_ABOVE = 25.5;
 
+//Types
 struct Cow
 {
 	string No = "none";
@@ -33,8 +32,9 @@ struct Cow
 	float Avg_Milk_Production = -1.0; // 0.0 to 40.0
 };
 
+//Functions
 // Generate cow population
-void GenerateCowPopulation(Cow cows[], int pop_size) {
+void GenerateCowPopulation(Cow cows[], const int pop_size) {
 	for (int i = 0; i < pop_size; i++) {
 		Cow New_Cow;
 
@@ -59,7 +59,7 @@ void GenerateCowPopulation(Cow cows[], int pop_size) {
 } //End of GenerateCowPopulation()
 
 // Print all cows
-void PrintAllCows(Cow cows[], int pop_size) {
+void PrintAllCows(Cow cows[], const int pop_size) {
 	cout << "All cow data.\n";
 	for (int i = 0; i < pop_size; i++) {
 		cout << "No -> " << cows[i].No << " | "
@@ -70,7 +70,7 @@ void PrintAllCows(Cow cows[], int pop_size) {
 } //End of PrintAllCows()
 
 // Print cows with above specified Average Milk Production
-void PrintCowsAboveAvgMilk(Cow cows[], int pop_size, float query_avg) {
+void PrintCowsAboveAvgMilk(Cow cows[], const int pop_size, const float query_avg) {
 	cout << "\nCows with Average Milk Production above " << setprecision(4) << query_avg << " litres.\n";
 	for (int i = 0; i < pop_size; i++) {
 		if (cows[i].Avg_Milk_Production > query_avg) {
@@ -83,7 +83,7 @@ void PrintCowsAboveAvgMilk(Cow cows[], int pop_size, float query_avg) {
 } //End of PrintCowsAboveAvgMilk()
 
 // Print cows with  Max and Min Milk Production for queried year
-void PrintMinMaxCows(Cow cows[], int pop_size, int query_year) {
+void PrintMinMaxCows(Cow cows[], const int pop_size, const int query_year) {
 	Cow MinCow, MaxCow;
 	MinCow.Avg_Milk_Production = MAX_AVG_MILK;
 	MaxCow.Avg_Milk_Production = -1.0;
@@ -117,7 +117,7 @@ void PrintMinMaxCows(Cow cows[], int pop_size, int query_year) {
 } //End of PrintMinMaxCows()
 
 // Print the Average Milk Production above specified average
-void PrintAvgMilkAbove(Cow cows[], int pop_size, float query_avg_above) {
+void PrintAvgMilkAbove(Cow cows[], const int pop_size, const float query_avg_above) {
 	float avg_sum = 0;
 	int cows_qualified = 0;
 	for (int i = 0; i < pop_size; i++) {
@@ -136,23 +136,23 @@ void PrintAvgMilkAbove(Cow cows[], int pop_size, float query_avg_above) {
 	}
 } //End of PrintAvgMilkAbove()
 
-
+//Entry point
 int main() {
 
 	// Generate cow population
-	Cow Cows[MAX_COWS];
-	GenerateCowPopulation(Cows,MAX_COWS);
+	Cow cows[MAX_COWS];
+	GenerateCowPopulation(cows,MAX_COWS);
 
 	// Print all cows
-	PrintAllCows(Cows, MAX_COWS);
+	PrintAllCows(cows, MAX_COWS);
 
 	// Print cows with above specified Average Milk Production -> QUERY_AVERAGE = 15 
-	PrintCowsAboveAvgMilk(Cows, MAX_COWS, QUERY_AVERAGE);
+	PrintCowsAboveAvgMilk(cows, MAX_COWS, QUERY_AVERAGE);
 
 	// Print cows with  Max and Min Milk Production for queried year -> QUERY_YEAR = 2017 
-	PrintMinMaxCows(Cows, MAX_COWS, QUERY_YEAR);
+	PrintMinMaxCows(cows, MAX_COWS, QUERY_YEAR);
 
 	// Print the Average Milk Production above specified average -> QUERY_AVERAGE_ABOVE = 25.5 
-	PrintAvgMilkAbove(Cows, MAX_COWS, QUERY_AVERAGE_ABOVE);
+	PrintAvgMilkAbove(cows, MAX_COWS, QUERY_AVERAGE_ABOVE);
 
 } //End of main()
